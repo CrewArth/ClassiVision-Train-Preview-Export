@@ -63,6 +63,19 @@ def train_model(epochs, batch_size, learning_rate):
 
     model.compile(optimizer=Adam(learning_rate=learning_rate), loss="categorical_crossentropy", metrics=["accuracy"])
 
+    # Create an empty container for real-time updates
+    progress_placeholder = st.empty()
+
+    # Callback to display progress
+    class CustomCallback(tf.keras.callbacks.Callback):
+        def on_epoch_end(self, epoch, logs=None):
+            logs = logs or {}
+            progress_placeholder.text(
+                f"Epoch {epoch + 1}/{epochs}\n"
+                f"Training Accuracy: {logs.get('accuracy', 0.0):.4f}, Loss: {logs.get('loss', 0.0):.4f}\n"
+                f"Validation Accuracy: {logs.get('val_accuracy', 0.0):.4f}, Val Loss: {logs.get('val_loss', 0.0):.4f}"
+            )
+    
     training_history = model.fit(train_data, validation_data=validation_data, epochs=epochs)
 
     os.makedirs(MODEL_DIR, exist_ok=True)
