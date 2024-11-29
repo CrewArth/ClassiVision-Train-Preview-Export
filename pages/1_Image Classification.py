@@ -164,14 +164,14 @@ if st.session_state['classes']:
     # choose_model = st.selectbox("Choose Pretrained Model ***(MobileNet Default)***", ['MobileNet','VGG16', 'ResNet50'])
 
     if st.button("Train Model"):
-        if len(os.listdir(DATA_DIR)) >= 2:  # Ensure at least 2 classes have data
-            st.write("Model is training...")
-            train_model(epochs, batch_size, learning_rate)  # Pass user inputs to the backend
-            st.session_state['model_trained'] = True
-            plot_training()  # Show training results
+    if len(os.listdir(DATA_DIR)) >= 2:  # Ensure at least 2 classes have data
+        st.write("Model is training...")
+        train_model(epochs, batch_size, learning_rate)  # Pass user inputs to the backend
+        st.session_state['model_trained'] = True
+        plot_training()  # Show training results
+    else:
+        st.error("Please add at least 2 classes with images.")
 
-        else:
-            st.error("Please add at least 2 classes with images.")
 else:
     st.info("No classes available. Add at least 2 classes before training.")
 
