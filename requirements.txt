@@ -7,7 +7,6 @@ Pillow
 keras
 utils
 emoji
-shutil
 os
 time
 zipfile 
