@@ -77,7 +77,7 @@ def train_model(epochs, batch_size, learning_rate):
                 f"Validation Accuracy: {logs.get('val_accuracy', 0.0):.4f}, Val Loss: {logs.get('val_loss', 0.0):.4f}"
             )
     
-    training_history = model.fit(train_data, validation_data=validation_data, epochs=epochs)
+    training_history = model.fit(train_data, validation_data=validation_data, epochs=epochs, callbacks=[CustomCallback()])
 
     os.makedirs(MODEL_DIR, exist_ok=True)
     model.save(os.path.join(MODEL_DIR, "trained_model.h5"))
