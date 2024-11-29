@@ -6,4 +6,4 @@ opencv-python==4.10.0.84
 pillow==11.0.0
 keras==3.7.0
 matplotlib==3.8.0
-scipy==2.0.2
+scipy==1.11.3
