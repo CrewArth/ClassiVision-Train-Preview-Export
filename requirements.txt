@@ -1,5 +1,6 @@
 streamlit==1.40.2
 streamlit-webrtc==0.47.9
+streamlit-lottie==0.0.5
 tensorflow==2.18.0
 numpy==1.26.1
 opencv-python==4.10.0.84
