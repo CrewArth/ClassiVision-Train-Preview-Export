@@ -10,6 +10,7 @@ from keras._tf_keras.keras.preprocessing.image import ImageDataGenerator, img_to
 from keras._tf_keras.keras.applications import MobileNet, ResNet50, VGG16
 import matplotlib.pyplot as plt
 from utils.loading_animation import  show_loading_animation
+import tensorflow as tf
 
 # Constants for directories
 MODEL_DIR = "models/"
