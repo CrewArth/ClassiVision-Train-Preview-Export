@@ -4,9 +4,6 @@ tensorflow
 numpy
 opencv-python
 Pillow
-keras
-zipfile 
-json
+keras 
 streamlit_lottie
-cv2
 matplotlib.pyplot
