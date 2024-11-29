@@ -65,6 +65,7 @@ st.markdown(
             display: inline-block;  
             text-align: center;
             width: 250px;
+            margin-bottom:30px;
             margin-left:30px;
             height: 250px;
             text-decoration:none;
