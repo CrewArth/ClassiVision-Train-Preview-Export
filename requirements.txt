@@ -6,4 +6,3 @@ opencv-python
 Pillow
 keras 
 streamlit_lottie
-matplotlib.pyplot
