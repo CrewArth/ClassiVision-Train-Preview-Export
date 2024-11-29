@@ -31,3 +31,35 @@ models/
   └── trained_model.tflite
 app.py
 requirements.txt
+```
+
+## 🔧 Technologies Used:
+**Streamlit: For building the interactive and easy-to-use web interface.
+TensorFlow/Keras: For training machine learning models directly in the browser.
+OpenCV: For webcam input and image capture functionality.
+Pillow (PIL): For image processing and handling.
+Python: Backend scripting for handling model training and predictions.**
+
+## 🛠️ Installation & Setup:
+
+1. Clone this repository:
+```bash
+git clone https://github.com/your-username/ClassiVision.git
+```
+2. Install the necessary dependencies:
+```bash
+pip install -r requirements.txt
+```
+3. Run the Web App:
+```bash
+streamlit run Home.py
+```
+
+## _🌟 Why Choose ClassiVision?_
+1. Fast & Easy Setup: Train your image classification model with just a few clicks—no deep technical knowledge required.
+2. Interactive Learning: View your training progress in real-time and adjust parameters to get the best results.
+3. Seamless Exporting: Download models in convenient formats like .tflite for mobile use, or .zip for easy transfer.
+4. ClassiVision aims to make machine learning accessible to everyone by providing an interactive and efficient platform to create custom image classifiers— all within minutes!
+
+## 🤝 Contributing:
+We welcome contributions! Whether it's bug fixes, new features, or improvements, feel free to fork the repository and submit pull requests. Please ensure that your contributions follow the code of conduct and adhere to the project's style guidelines.
