@@ -1,0 +1,17 @@
+streamlit
+streamlit-webrtc
+tensorflow
+numpy
+opencv-python
+Pillow
+keras
+utils
+emoji
+shutil
+os
+time
+zipfile 
+json
+streamlit_lottie
+cv2
+matplotlib.pyplot
