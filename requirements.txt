@@ -6,8 +6,6 @@ opencv-python
 Pillow
 keras
 utils
-os
-time
 zipfile 
 json
 streamlit_lottie
