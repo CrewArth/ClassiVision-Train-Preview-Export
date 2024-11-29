@@ -1,4 +1,4 @@
-# 🌟 **ClassiVision** - Live Train, Preview & Effortless Export 🤖
+# 🌟 **ClassiVision** - Live Train, Preview & Effortless Export
 
 **ClassiVision** is an intuitive, web-based image classification tool designed to make training machine learning models fast, interactive, and effortless. Inspired by the simplicity of [Teachable Machine by Google](https://teachablemachine.withgoogle.com/), **ClassiVision** allows users to easily upload or capture images via webcam to create datasets for training custom image classification models.
 
