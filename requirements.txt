@@ -5,7 +5,6 @@ numpy
 opencv-python
 Pillow
 keras
-utils
 zipfile 
 json
 streamlit_lottie
