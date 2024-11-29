@@ -6,7 +6,6 @@ opencv-python
 Pillow
 keras
 utils
-emoji
 os
 time
 zipfile 
