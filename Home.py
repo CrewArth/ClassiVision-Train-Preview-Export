@@ -1,5 +1,5 @@
 import streamlit as st
-import emoji
+
 
 
 icon_path = "eye.png"
@@ -17,10 +17,6 @@ st.set_page_config(page_title="ClassiVision - Realtime Train, Preview & Effortle
                    page_icon=icon_path,
                    layout="wide",
                    initial_sidebar_state="auto")
-
-#
-# st.sidebar.title(emoji.emojize(":laptop: **Welcome to the Streamlit App!**"))
-
 
 
 # CSS for styling
