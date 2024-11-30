@@ -1,59 +1,67 @@
-import os
-import time
-import streamlit as st
-from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
-from PIL import Image
 import cv2
+import os
+import streamlit as st
+import time
+from PIL import Image
 
+# webcam_utils.py
 
-# Directory to save captured images
-OUTPUT_DIR = "captured_images"
-if not os.path.exists(OUTPUT_DIR):
-    os.makedirs(OUTPUT_DIR)
+def capture_images_from_webcam(output_dir):
+    """
+    Keeps the webcam open, captures frames automatically every 2 seconds,
+    and saves them in the specified directory. Returns the list of captured images.
+    """
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
+    captured_images = []  # List to store captured images
 
-class VideoProcessor(VideoTransformerBase):
-    def __init__(self):
-        self.image_count = 0
-        self.start_time = time.time()
-        self.captured_images = []  # List to store captured image paths
+    # Open the webcam (0 is the default camera)
+    cap = cv2.VideoCapture(0)
+    if not cap.isOpened():
+        st.error("Error: Could not access the webcam.")
+        return []
 
-    def recv(self, frame):
-        # Convert the frame to OpenCV-compatible format
-        img = frame.to_ndarray(format="bgr24")
-        frame_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    st.info("Press 'Stop' to stop capturing images.")
 
-        # Capture and save an image every 2 seconds
-        if time.time() - self.start_time >= 2:
-            image_path = os.path.join(OUTPUT_DIR, f"image_{self.image_count}.jpg")
-            cv2.imwrite(image_path, img)
-            self.captured_images.append(image_path)
-            self.image_count += 1
-            self.start_time = time.time()
+    stop_capture = st.button("Stop Capture", key="stop_capture_button")
 
-        # Return the frame for live preview
-        return img
+    image_count = 0
+    start_time = time.time()
 
+    # Streamlit placeholder for displaying frames
+    st_frame = st.empty()
 
-def main():
-    st.title("Streamlit Webcam Capture App")
-    st.info("This app captures images from the webcam automatically every 2 seconds.")
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            st.error("Failed to capture image. Exiting...")
+            break
 
-    # Sidebar to display captured images
-    st.sidebar.header("Captured Images")
-    if os.listdir(OUTPUT_DIR):
-        for image_file in sorted(os.listdir(OUTPUT_DIR), reverse=True):
-            if image_file.endswith(".jpg"):
-                st.sidebar.image(os.path.join(OUTPUT_DIR, image_file), use_column_width=True)
+        # Convert the frame to RGB (for Streamlit compatibility)
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        image = Image.fromarray(frame_rgb)
 
-    # Start webcam streaming
-    ctx = webrtc_streamer(key="webcam", video_processor_factory=VideoProcessor)
+        # Display the frame in the Streamlit app
+        st_frame.image(image, caption="Webcam Feed")
 
-    if ctx and ctx.video_processor:
-        st.info("Webcam is active. Images are being captured every 2 seconds.")
+        # Save an image every 2 seconds
+        if time.time() - start_time >= 2:
+            image_path = os.path.join(output_dir, f"image_{image_count}.jpg")
+            cv2.imwrite(image_path, frame)
+            captured_images.append(image_path)  # Add image path to captured images list
+            image_count += 1
+            start_time = time.time()
 
-    st.sidebar.info("To stop the app, press Ctrl+C or close the browser tab.")
+        # Check if stop button was clicked
+        if stop_capture:
+            st.write("Webcam capture stopped.")
+            break
 
+        time.sleep(0.1)  # Small delay to avoid overloading the app
 
-if __name__ == "__main__":
-    main()
+    # Release the webcam resource after stopping
+    cap.release()
+    st.info("Webcam capture stopped.")
+
+    return captured_images  # Return the captured images
