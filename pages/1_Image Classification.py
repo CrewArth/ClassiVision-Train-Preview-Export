@@ -136,7 +136,8 @@ if st.session_state['classes']:
         if st.button("Start Webcam Capture"):
             if selected_class:
                 class_dir = os.path.join(DATA_DIR, selected_class)
-                capture_images_from_webcam(class_dir)
+                captured_images = capture_images_from_webcam(class_dir)
+                st.write(f"{len(captured_images)} images captured!")
             else:
                 st.error("Please select a class first.")
     elif data_option == "Upload Images":
