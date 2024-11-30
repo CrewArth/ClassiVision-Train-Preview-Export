@@ -4,101 +4,64 @@ import streamlit as st
 import time
 from PIL import Image
 
-
-def initialize_camera():
-    """
-    Initialize the webcam. Tries indices 0 to 4 to find a working camera.
-    Returns the camera object or None if no camera is found.
-    """
-    for index in range(6):  # Try indices 0 to 5
-        cap = cv2.VideoCapture(index)
-        if cap.isOpened():
-            st.info(f"Camera initialized at index {index}")
-            return cap
-    return None
-
+# webcam_utils.py
 
 def capture_images_from_webcam(output_dir):
     """
-    Captures images from the webcam every 2 seconds until the "Stop Capture" button is pressed.
-    Saves captured images to the specified directory and displays the webcam feed in Streamlit.
+    Keeps the webcam open, captures frames automatically every 2 seconds,
+    and saves them in the specified directory. Returns the list of captured images.
     """
-    # Ensure output directory exists
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    captured_images = []  # List to store paths of captured images
+    captured_images = []  # List to store captured images
 
-    # Initialize camera
-    cap = initialize_camera()
-    if not cap:
-        st.error("No accessible camera found. Please check connections or permissions.")
+    # Open the webcam (0 is the default camera)
+    cap = cv2.VideoCapture(4)
+    if not cap.isOpened():
+        st.error("Error: Could not access the webcam.")
         return []
 
-    # Streamlit session state for stopping capture
-    if "stop_capture" not in st.session_state:
-        st.session_state["stop_capture"] = False
+    st.info("Press 'Stop' to stop capturing images.")
 
-    # Stop capture button
-    stop_capture = st.button("Stop Capture")
-    if stop_capture:
-        st.session_state["stop_capture"] = True
+    stop_capture = st.button("Stop Capture", key="stop_capture_button")
 
-    st.info("Capturing images. Press 'Stop Capture' to stop.")
-
-    # Variables for capturing images
-    start_time = time.time()
     image_count = 0
+    start_time = time.time()
 
-    # Streamlit placeholder for webcam feed
+    # Streamlit placeholder for displaying frames
     st_frame = st.empty()
 
-    while not st.session_state["stop_capture"]:
-        # Capture frame from the webcam
+    while True:
         ret, frame = cap.read()
         if not ret:
-            st.error("Failed to capture frame. Exiting...")
+            st.error("Failed to capture image. Exiting...")
             break
 
-        # Convert frame to RGB for Streamlit compatibility
+        # Convert the frame to RGB (for Streamlit compatibility)
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        st_frame.image(frame_rgb, caption="Webcam Feed", use_column_width=True)
+        image = Image.fromarray(frame_rgb)
+
+        # Display the frame in the Streamlit app
+        st_frame.image(image, caption="Webcam Feed")
 
         # Save an image every 2 seconds
         if time.time() - start_time >= 2:
             image_path = os.path.join(output_dir, f"image_{image_count}.jpg")
             cv2.imwrite(image_path, frame)
-            captured_images.append(image_path)
+            captured_images.append(image_path)  # Add image path to captured images list
             image_count += 1
             start_time = time.time()
 
-        time.sleep(0.1)  # Small delay to prevent excessive resource usage
+        # Check if stop button was clicked
+        if stop_capture:
+            st.write("Webcam capture stopped.")
+            break
 
-    # Release webcam and update UI
+        time.sleep(0.1)  # Small delay to avoid overloading the app
+
+    # Release the webcam resource after stopping
     cap.release()
     st.info("Webcam capture stopped.")
 
-    return captured_images
-
-
-# Main Streamlit App
-def main():
-    st.title("Webcam Image Capture")
-    st.write("This app captures images from your webcam every 2 seconds.")
-
-    # Directory for saving captured images
-    output_dir = st.text_input("Enter the directory to save captured images:", "captured_images")
-
-    if st.button("Start Webcam Capture"):
-        st.write("Initializing webcam...")
-        captured_images = capture_images_from_webcam(output_dir)
-
-        if captured_images:
-            st.success(f"Captured {len(captured_images)} images.")
-            st.write("Captured Images:")
-            for img_path in captured_images:
-                st.image(Image.open(img_path), caption=img_path, use_column_width=True)
-
-
-if __name__ == "__main__":
-    main()
+    return captured_images  # Return the captured images
