@@ -10,7 +10,7 @@ def initialize_camera():
     Initialize the webcam. Tries indices 0 to 4 to find a working camera.
     Returns the camera object or None if no camera is found.
     """
-    for index in range(5):  # Try indices 0 to 4
+    for index in range(6):  # Try indices 0 to 5
         cap = cv2.VideoCapture(index)
         if cap.isOpened():
             st.info(f"Camera initialized at index {index}")
