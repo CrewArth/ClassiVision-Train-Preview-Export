@@ -5,7 +5,7 @@ import time
 import zipfile
 from utils.data_utils import save_uploaded_images
 from utils.model_utils import plot_training, predict_image, train_model
-from utils.webcam_utils import  display_captured_images
+from utils.webcam_utils import  capture_images_from_webcam
 
 
 # Constants for directories
