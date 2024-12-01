@@ -193,6 +193,12 @@ st.markdown(
             <img src="https://cdn-icons-png.flaticon.com/512/2975/2975842.png" alt="Image Segmentation" />
             <div class="classification-title">Image Segmentation</div>
         </a> </div>
+
+        <div class="center-box">
+        <a href='#', class="classification-box">
+          
+            <div class="classification-title">Coming Soon...</div>
+        </a> </div>
     </div>
     """,
     unsafe_allow_html=True,
