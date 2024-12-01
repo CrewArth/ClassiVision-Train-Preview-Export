@@ -194,12 +194,7 @@ st.markdown(
             <div class="classification-title">Image Segmentation</div>
         </a> </div>
 
-        <div class="center-box">
-        <a href='#', class="classification-box">
-          
-            <div class="classification-title">Coming Soon...</div>
-        </a> </div>
-    </div>
+        
     """,
     unsafe_allow_html=True,
 )
