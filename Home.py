@@ -190,7 +190,7 @@ st.markdown(
         </a>    
         <div class="center-box">
         <a href='#', class="classification-box">
-            <img src="https://cdn-icons-png.flaticon.com/512/2975/2975842.png" alt="Pose Segmentationa" />
+            <img src="https://cdn-icons-png.flaticon.com/512/2975/2975842.png" alt="Image Segmentation" />
             <div class="classification-title">Image Segmentation</div>
         </a> </div>
     </div>
