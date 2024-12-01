@@ -191,7 +191,7 @@ st.markdown(
         <div class="center-box">
         <a href='#', class="classification-box">
             <img src="https://cdn-icons-png.flaticon.com/512/2975/2975842.png" alt="Image Segmentation" />
-            <div class="classification-title">Image Segmentation</div>
+            <div class="classification-title"> Segmentation</div>
         </a> </div>
     </div>
     """,
