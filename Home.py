@@ -3,7 +3,7 @@ import streamlit as st
 
 
 icon_path = "eye.png"
-
+how_to_use_path = "res/HowToUse.png"
 PAGES = {
     "Home": 'home',
     "App": 'app',
@@ -197,6 +197,13 @@ st.markdown(
         
     """,
     unsafe_allow_html=True,
+)
+
+st.header("How to use?")
+
+st.markdown(
+    st.image(image=how_to_use_path, caption="Credit: teachablemachines", width=1100 )
+
 )
 
 
