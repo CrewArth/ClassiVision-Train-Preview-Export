@@ -2,6 +2,8 @@
 
 **ClassiVision** is an intuitive, web-based image classification tool designed to make training machine learning models fast, interactive, and effortless. Inspired by the simplicity of [Teachable Machine by Google](https://teachablemachine.withgoogle.com/), **ClassiVision** allows users to easily upload or capture images via webcam to create datasets for training custom image classification models.
 
+**The App is deployed here** https://classivision.streamlit.app/
+
 ## 🚀 Key Features:
 - **📸 Capture or Upload Images**: Capture images using your webcam or upload images directly from your device to create a custom dataset for your classification task.
 - **⚙️ Adjustable Training Parameters**: Choose model training parameters such as epochs, learning rate, batch size, etc., to tailor the model to your needs.
