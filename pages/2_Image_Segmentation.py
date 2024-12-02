@@ -57,7 +57,7 @@ def segment_image(image):
 
 # Main Streamlit app
 def image_segmentation_page():
-    st.title("Image Segmentation with DeepLabV3")
+    st.title("Image Segmentation")
 
     uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
     if uploaded_file is not None:
