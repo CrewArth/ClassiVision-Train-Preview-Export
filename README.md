@@ -44,7 +44,7 @@ Python: Backend scripting for handling model training and predictions.**
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/your-username/ClassiVision.git
+git clone https://github.com/CrewArth/ClassiVision-Train-Preview-Export.git
 ```
 2. Install the necessary dependencies:
 ```bash
