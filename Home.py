@@ -1,23 +1,19 @@
 import streamlit as st
 
-
-
 icon_path = "eye.png"
 how_to_use_path = "res/HowToUse.png"
+
 PAGES = {
     "Home": 'home',
     "App": 'app',
     "AboutUs": 'aboutus'
 }
 
-
-
 # Set page configuration
 st.set_page_config(page_title="ClassiVision - Realtime Train, Preview & Effortless Download",
                    page_icon=icon_path,
                    layout="wide",
                    initial_sidebar_state="auto")
-
 
 # CSS for styling
 st.markdown(
@@ -164,7 +160,6 @@ st.markdown(
         </style>
         """, unsafe_allow_html=True)
 
-
 st.markdown(
     """
     <div class="header"> 
@@ -177,7 +172,6 @@ st.markdown(
 st.divider()
 
 st.sidebar.success("Select the Page")
-
 
 # Center Classification Box with External SVG icon
 st.markdown(
@@ -201,12 +195,8 @@ st.markdown(
 
 st.header("How to use?")
 
-st.markdown(
-    st.image(image=how_to_use_path, caption="Credit: teachablemachines", width=1100 )
 
-)
-
-
+st.image(image=how_to_use_path, caption="Credit: teachablemachines", width=1100 )
 
 # About Developer Section
 st.header("***About Developer***", divider=True)
